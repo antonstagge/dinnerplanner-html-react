@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function DishItem({dish}) {
     return (
-        <Link to={"details/" + dish.id} className="smallImageContainer p-6 cursor-pointer text-black no-underline">
+        <Link to={"details/" + dish.id} className="smallImageContainer p-6 cursor-pointer text-black no-underline block">
             <div className="imageContainer flex justify-center border-2 border-black">
                 <img className="h-full w-full"
                     src={"https://spoonacular.com/recipeImages/" + dish.id + "-312x150.jpg"}

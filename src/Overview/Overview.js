@@ -5,15 +5,15 @@ import Button from '../shared/Button';
 
 const Overview = ({model}) => {
     return (
-        <div id="dinnerOverviewContainer" className="h-full">
+        <div className="h-full">
             <div  className="flex flex-wrap m-5 p-5 border-b-4 border-black">
-                <div id="menuDishesContainer" className="flex-3 flex flex-wrap justify-end">
-                    {model.getFullMenu().map(dish => <div>
+                <div className="flex-3 flex flex-wrap justify-end">
+                    {model.getFullMenu().map(dish => <div key={dish.id}>
                         <DishItem dish={dish}/>
-                        <div classNameName="text-right pr-6">{model.getDishPrice(dish)}</div>
+                        <div className="text-right pr-6">{model.getDishPrice(dish)}</div>
                     </div>)}
                 </div>
-                <div id="totalPriceContainer" className="flex-1 flex flex-col justify-end border-l-4 border-black pl-3">
+                <div className="flex-1 flex flex-col justify-end border-l-4 border-black pl-3">
                     <div>
                         Total:
                     </div>
