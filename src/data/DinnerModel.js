@@ -30,7 +30,7 @@ const DinnerModel = function () {
 		});
 	}
 
-	this.getAllTypes = () => {
+	this.getTypes = () => {
 		return types;
 	}
 
@@ -135,7 +135,7 @@ const DinnerModel = function () {
 	this.getAllDishes = (type, filter) => {
 		return fetch(
 				this.buildSearchUrl(type, filter),
-				{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d76'}})
+				{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
 			.then(this.handleErrors)
 			.then(response => response.json())
 			.then(data => data.results)

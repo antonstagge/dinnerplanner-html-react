@@ -7,12 +7,20 @@ class SearchDishes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: 'INITIAL'
+            status: 'INITIAL',
+            type: 'all',
+            filter: ''
+
         }
     }
 
     componentDidMount = () => {
-        this.props.model.getAllDishes('All', '')
+        this.search()
+    }
+
+    search = () => {
+        console.log(this.state.type, this.state.filter)
+        this.props.model.getAllDishes(this.state.type, this.state.filter)
             .then(dishes => {
                 if (dishes) {
                     this.setState({
@@ -25,6 +33,11 @@ class SearchDishes extends Component {
                     });
                 }
             });
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.search();
     }
 
     render() {
@@ -47,11 +60,22 @@ class SearchDishes extends Component {
         return (<div id="dishSearchContainer" className="flex-3 border flex-col flex">
             <div id="inputContainer" className="border p-4">
                     <div className="text-xl font-bold pb-3">FIND A DISH</div>
-                    <div className="flex flex-wrap -ml-2">
-                            <input id="textFilter" type="text" className="border flex-1 mx-2" placeholder="Enter key words"/>
-                            <select id="typeFilter" className="border flex-1 mx-2"></select>
+                    <form className="flex flex-wrap -ml-2" onSubmit={this.handleSubmit}>
+                            <input id="textFilter" 
+                                type="text" 
+                                className="border flex-1 mx-2" 
+                                placeholder="Enter key words"
+                                value={this.state.filter}
+                                onChange={e => this.setState({filter: e.target.value})}
+                            />
+                            <select id="typeFilter" 
+                                className="border flex-1 mx-2"
+                                onChange={e => this.setState({type: e.target.value})}
+                            >
+                                {this.props.model.getTypes().map(type => <option key={type}>{type}</option>)}
+                            </select>
                             <Button id="searchBtn" text="Search"/>
-                    </div>
+                    </form>
             </div>
             <div id="resultContainer" className=" flex justify-center flex-wrap relative h-full">
                 {dishesList}

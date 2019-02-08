@@ -1,25 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React, {Component} from 'react';
 import Error from './Error';
 
-export default function ErrorList({model}) {
-    const [errors, setErrors] = useState(model.getErrors());
-
-    useEffect(() => {
-        model.addObserver({update, id: 'ERROR-LIST'});
-        return () => {
-            model.removeObserver("ERROR-LIST");
+export default class ErrorList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            errors: props.model.getErrors(),
         }
-    })
-
-    function update() {
-        setErrors(model.getErrors());
-        console.log(errors)
+    }
+    componentDidMount = () => {
+        this.props.model.addObserver({update: this.update, id: 'ERROR-LIST'});
+    }
+        
+    componentWillUnmount = () => {
+        this.props.model.removeObserver("ERROR-LIST");
+    }
+        
+    update = () => {
+        this.setState({errors: this.props.model.getErrors()});
     }
     
-    return (<div className="fixed pin-t pin-r w-48 md:w-64 text-white z-10">
-        {errors.map(e => {
-            console.log("ehre")
-            return <Error data={e}/>
-        })}
-    </div>)
+    render() {
+        return (<div className="fixed pin-t pin-r w-48 md:w-64 text-white z-10">
+            {this.state.errors.map(e => {
+                return <Error key={e.id} error={e} remove={(id) => this.props.model.removeError(id)}/>
+            })}
+        </div>)
+    }
 }
