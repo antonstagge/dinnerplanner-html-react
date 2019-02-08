@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from '../../shared/Button';
 import Spinner from '../../shared/Spinner';
+import DishItem from '../../shared/DishItem';
 
 
 class SearchDishes extends Component {
@@ -49,7 +50,10 @@ class SearchDishes extends Component {
                 break;
             case 'LOADED':
                 dishesList = this.state.dishes.map((dish) =>
-                <li key={dish.id}>{dish.title}</li>
+                    <DishItem 
+                        key={dish.id}
+                        dish={dish}
+                    />
                 )
                 break;
             default:
