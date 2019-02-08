@@ -70,7 +70,7 @@ class Sidebar extends Component {
                     {"SEK " + this.props.model.getTotalMenuPrice()}
                 </div>
                 <div className="flex justify-center pt-6 pb-6">
-                    <Link to="/search">
+                    <Link to="/overview">
                         <Button
                             text="Confirm dinner"
                         />

@@ -6,6 +6,8 @@ import ErrorList from './ErrorList/ErrorList';
 import Sidebar from './Sidebar/Sidebar';
 import SearchDishes from './SearchDishes/SearchDishes';
 import DishDetails from './DishDetails/DishDetails';
+import BackAndEdit from './BackAndEdit/BackAndEdit';
+import Overview from './Overview/Overview';
 
 export default class App extends Component {
     constructor(props) {
@@ -36,6 +38,7 @@ export default class App extends Component {
                         <DishDetails model={modelInstance} id={match.params.id}/>
                     </div>}
                 />
+                <Route path="/overview" render={() => [<BackAndEdit key="BackAndEdit" model={modelInstance}/>, <Overview key="Overview" model={modelInstance}/>]} />
             </div>
         </div>
         );
