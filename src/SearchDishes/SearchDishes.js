@@ -20,6 +20,7 @@ class SearchDishes extends Component {
     }
 
     search = () => {
+        // TODO: spin on search
         this.props.model.getAllDishes(this.state.type, this.state.filter)
             .then(dishes => {
                 if (dishes) {

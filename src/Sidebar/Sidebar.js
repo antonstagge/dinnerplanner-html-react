@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../shared/Button';
+import SidebarItem from './SidebarItem';
 class Sidebar extends Component {
     constructor(props) {
         super(props)
@@ -58,10 +59,15 @@ class Sidebar extends Component {
                         <div className="w-10"></div>
                 </div>
                 <div id="selectedDishesNameAndPriceContainer">
-                        {/* TODO: <!-- Populated by dishSearchView.js--> */}
+                    {this.props.model.getFullMenu().map(dish => 
+                        <SidebarItem key={dish.id} 
+                            dish={dish} 
+                            price={this.props.model.getDishPrice(dish)}
+                            remove={(id) => this.props.model.removeDishFromMenu(id)}
+                        />)}
                 </div>
                 <div id="totalCost" className="text-right pr-12">
-
+                    {"SEK " + this.props.model.getTotalMenuPrice()}
                 </div>
                 <div className="flex justify-center pt-6 pb-6">
                     <Link to="/search">

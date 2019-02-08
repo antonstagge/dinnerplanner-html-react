@@ -55,7 +55,7 @@ const DishDetails = ({model, id}) => {
                         </div>
                         <div className="m-2 border-black border"></div>
                         <div className="flex justify-between p-2">
-                                <button id="addToMenuBtn" className="bg-orange-light hover:bg-orange border-2 hover:shadow-inner shadow rounded border-orange hover:border-orange-light p-2">Add to menu</button>
+                                <Button text="Add to menu" onClick={() => model.addDishToMenu(dish)}/>
                                 <div id="totalCost" className="pr-2">
                                     {"Total cost: " + dish.extendedIngredients.map(ingred => ingred.amount*model.getNumberOfGuests()).reduce((a,b) => a+b, 0)}
                                 </div>

@@ -1,5 +1,5 @@
 const DinnerModel = function () {
-	var numberOfGuests = 5;
+	var numberOfGuests = 5; // TODO: COOKIES FOR INIT
 	var selectedDishes = [];
 	var detailedDinner = 0;
 	var observers = [];
