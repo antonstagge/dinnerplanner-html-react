@@ -7,7 +7,7 @@ class SelectDish extends Component {
         return (
         <div className="flex-when-big">
             <Sidebar model={this.props.model}/>
-            <SearchDishes/>
+            <SearchDishes model={this.props.model}/>
         </div>
         );
     }

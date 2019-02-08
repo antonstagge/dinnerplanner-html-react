@@ -16,11 +16,11 @@ export default class App extends Component {
     render() {
         return (
         <div className="h-screen">
-            <ErrorList/>
-            <h1 class="header text-center bg-orange-light flex flex-col justify-center">
+            <ErrorList model={modelInstance}/>
+            <h1 className="header text-center bg-orange-light flex flex-col justify-center">
                 Dinner planner
             </h1>
-            <div class="body">
+            <div className="body">
                 <Route exact path="/" component={Welcome}/>
                 <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
             </div>

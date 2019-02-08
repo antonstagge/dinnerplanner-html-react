@@ -5,13 +5,13 @@ const DinnerModel = function () {
 	var observers = [];
 	var errors = [];
 
-  var types = ["all", "main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "drink"];
-  
+	var types = ["all", "main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "drink"];
+	
 
-  // Observer pattern
-  this.removeObserver = function (observerId) {
-    observers = observers.filter(o => o.id !== observerId);
-  };
+	// Observer pattern
+	this.removeObserver = function (observerId) {
+		observers = observers.filter(o => o.id !== observerId);
+	};
 
 	this.addObserver = function(observer) {
 		observers.push(observer);
@@ -19,14 +19,14 @@ const DinnerModel = function () {
 	
 	this.notifyObservers = function(id) {
 		if(id === "ERROR-LIST"){
-			var errorListView = observers.find(view => view.id === "ERROR-LIST");
-			errorListView.view.update();
+			var errorListView = observers.find(obs => obs.id === "ERROR-LIST");
+			errorListView.update();
 			return;
 		}
 		
 		// TODO: performance boost by checking obj;
 		observers.forEach(function(observer) {
-			observer.view.update();
+			observer.update();
 		});
 	}
 
@@ -135,12 +135,13 @@ const DinnerModel = function () {
 	this.getAllDishes = (type, filter) => {
 		return fetch(
 				this.buildSearchUrl(type, filter),
-				{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
+				{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d76'}})
 			.then(this.handleErrors)
 			.then(response => response.json())
 			.then(data => data.results)
 			.catch(error => {
 				this.addError(this.createError(error, "Could not execute search"));
+				return null;
 			});
 	}
 
@@ -153,6 +154,7 @@ const DinnerModel = function () {
 		.then(response => response.json())
 		.catch(error => {
 			this.addError(this.createError(error, "Could not get recipe"));
+			return null;
 		});
 	}
 
