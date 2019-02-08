@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel'
 import ErrorList from './ErrorList/ErrorList';
@@ -16,6 +17,29 @@ export default class App extends Component {
         this.state = {
             title: 'Dinner Planner',
         }
+    }
+    componentDidMount() {
+        window.addEventListener('beforeunload', this.handleCookies)
+    }
+    componentWillUnmount() {
+        window.removeEventListener('beforeunload');
+    }
+
+    handleCookies = () => {
+        const cookies = new Cookies();
+        cookies.set('numberOfGuests', modelInstance.getNumberOfGuests(), {path: '/'});
+        const temp = modelInstance.getFullMenu().map(dish => {
+            return {
+                id: dish.id,
+                title: dish.title,
+                readyInMinutes: dish.readyInMinutes,
+                extendedIngredients: dish.extendedIngredients,
+                instructions: dish.instructions
+            }
+        })
+        const test = JSON.stringify(temp);
+        cookies.set('menu', test , {path: '/'});
+        // TODO: just have cookies.set('menu', JSON.stringify(modelInstance.getFullMenu()) , {path: '/'});
     }
 
     render() {

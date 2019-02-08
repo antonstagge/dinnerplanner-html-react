@@ -1,7 +1,10 @@
+import Cookies from 'universal-cookie';
+
 const DinnerModel = function () {
-	var numberOfGuests = 5; // TODO: COOKIES FOR INIT
+	const cookies = new Cookies();
+	var numberOfGuests = cookies.get('numberOfGuests');
+	// var selectedDishes = JSON.parse(cookies.get('menu')); // TODO: This should work but doesn't
 	var selectedDishes = [];
-	var detailedDinner = 0;
 	var observers = [];
 	var errors = [];
 
@@ -43,14 +46,6 @@ const DinnerModel = function () {
 		return numberOfGuests;
 	}
 
-	this.getDetailedDinner = function() {
-		return detailedDinner;
-	}
-
-	this.setDetailedDinner = function(id) {
-		detailedDinner = id;
-		this.notifyObservers();
-	}
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
