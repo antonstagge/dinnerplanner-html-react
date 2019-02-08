@@ -8,7 +8,7 @@ class SearchDishes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: 'INITIAL',
+            status: 'LOADING',
             type: 'all',
             filter: ''
 
@@ -16,11 +16,11 @@ class SearchDishes extends Component {
     }
 
     componentDidMount = () => {
-        this.search()
+        this.search();
     }
 
     search = () => {
-        // TODO: spin on search
+        this.setState({status: 'LOADING'})
         this.props.model.getAllDishes(this.state.type, this.state.filter)
             .then(dishes => {
                 if (dishes) {
@@ -45,7 +45,7 @@ class SearchDishes extends Component {
         let dishesList = null;
         
         switch (this.state.status) {
-            case 'INITIAL':
+            case 'LOADING':
                 dishesList = <Spinner/>
                 break;
             case 'LOADED':

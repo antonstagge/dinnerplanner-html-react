@@ -12,7 +12,7 @@ const DishDetails = ({model, id}) => {
 
     useEffect(() => {
         model.addObserver({update: update, id: "DETAILS"});
-        console.log("getting dish")
+        console.log("getting dish");
         model.getDish(id).then(dish => setDish(dish));
         return () => {
             model.removeObserver("DETAILS");
