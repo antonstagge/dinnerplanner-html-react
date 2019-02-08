@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel'
-import SelectDish from "./SelectDish/SelectDish";
 import ErrorList from './ErrorList/ErrorList';
+import Sidebar from './Sidebar/Sidebar';
+import SearchDishes from './SearchDishes/SearchDishes';
+import DishDetails from './DishDetails/DishDetails';
 
 export default class App extends Component {
     constructor(props) {
@@ -22,7 +24,18 @@ export default class App extends Component {
             </h1>
             <div className="body">
                 <Route exact path="/" component={Welcome}/>
-                <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
+                <Route path="/search" render={() => 
+                    <div className="flex-when-big">
+                        <Sidebar model={modelInstance}/>
+                        <SearchDishes model={modelInstance}/>
+                    </div>}
+                />
+                <Route path="/details/:id" render={({match}) => 
+                    <div className="flex-when-big">
+                        <Sidebar model={modelInstance}/>
+                        <DishDetails model={modelInstance} id={match.params.id}/>
+                    </div>}
+                />
             </div>
         </div>
         );

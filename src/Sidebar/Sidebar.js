@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../shared/Button';
+import Button from '../shared/Button';
 class Sidebar extends Component {
     constructor(props) {
         super(props)

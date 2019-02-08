@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Button from '../../shared/Button';
-import Spinner from '../../shared/Spinner';
-import DishItem from '../../shared/DishItem';
+import Button from '../shared/Button';
+import Spinner from '../shared/Spinner';
+import DishItem from '../shared/DishItem';
 
 
 class SearchDishes extends Component {
@@ -20,7 +20,6 @@ class SearchDishes extends Component {
     }
 
     search = () => {
-        console.log(this.state.type, this.state.filter)
         this.props.model.getAllDishes(this.state.type, this.state.filter)
             .then(dishes => {
                 if (dishes) {
