@@ -1,10 +1,7 @@
-import Cookies from 'universal-cookie';
 
 const DinnerModel = function () {
-	const cookies = new Cookies();
-	var numberOfGuests = cookies.get('numberOfGuests');
-	// var selectedDishes = JSON.parse(cookies.get('menu')); // TODO: This should work but doesn't
-	var selectedDishes = [];
+	var numberOfGuests = localStorage.getItem('numberOfGuests');
+	var selectedDishes = JSON.parse(localStorage.getItem('menu')); 
 	var observers = [];
 	var errors = [];
 
