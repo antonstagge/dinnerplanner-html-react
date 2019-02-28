@@ -14,9 +14,16 @@ const DishDetails = ({model, id}) => {
         }
     }, [])
 
+    if(dish === null){
+        return <div className="flex-3 border relative"></div>    
+    }
+
     if (dish.id === 0) {
         return <div className="flex-3 border relative"><Spinner/></div>
     }
+
+    console.log("DISH IS")
+    console.log(dish);
     return (<div className="flex-3 border relative">
         <div className="flex flex-wrap">
                 <div id="dishOverviewContainer" className="flex-1 p-6">
