@@ -6,18 +6,13 @@ import {Link} from 'react-router-dom';
 const DishDetails = ({model, id}) => {
     const [dish, setDish] = useState({id: 0});
 
-    const update = () => {
-        setDish(dish)
-    }
-
     useEffect(() => {
-        model.addObserver({update: update, id: "DETAILS"});
-        console.log("getting dish");
+       
         model.getDish(id).then(dish => setDish(dish));
         return () => {
             model.removeObserver("DETAILS");
         }
-    }, [dish.id])
+    }, [])
 
     if (dish.id === 0) {
         return <div className="flex-3 border relative"><Spinner/></div>
