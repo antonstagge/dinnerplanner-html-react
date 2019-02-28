@@ -111,7 +111,7 @@ const DinnerModel = function () {
 		if (type !== 'all') params.append('type', type);
 		// params.append('instructionsRequired', true); // TODO: maybe include?
 		params.append('number', 20);
-		return 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?' + params.toString();
+		return 'http://sunset.nada.kth.se:8080/iprog/group/32/recipes/search?' + params.toString();
 	}
 
 	/**
@@ -140,7 +140,7 @@ const DinnerModel = function () {
 	//function that returns a dish of specific ID
 	this.getDish = (id) => {
 		return fetch(
-			'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + "/information",
+			'http://sunset.nada.kth.se:8080/iprog/group/32/recipes/' + id + "/information",
 			{headers: {'X-Mashape-Key': '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767'}})
 		.then(this.handleErrors)
 		.then(response => response.json())
