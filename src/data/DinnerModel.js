@@ -1,7 +1,7 @@
 
 const DinnerModel = function () {
-	var numberOfGuests = localStorage.getItem('numberOfGuests');
-	var selectedDishes = JSON.parse(localStorage.getItem('menu')); 
+	var numberOfGuests = localStorage.getItem('numberOfGuests') !== null ? localStorage.getItem('numberOfGuests') : 5;
+	var selectedDishes = JSON.parse(localStorage.getItem('menu')) !== null ? JSON.parse(localStorage.getItem('menu')) : []; 
 	var observers = [];
 	var errors = [];
 
